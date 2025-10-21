@@ -1,0 +1,31 @@
+_format_version: "3.0"
+_transform: true
+
+services:
+  - name: organizations-service
+    url: "${ORGANIZATIONS_URL}"
+    routes:
+      - name: organizations-route
+        paths:
+          - "/organizations"
+        strip_path: false
+
+  - name: drim-users-service
+    url: "${DRIM_USERS_URL}"
+    routes:
+      - name: drim-login-route
+        paths:
+          - "/auth/login"
+        strip_path: false
+      - name: drim-logout-route
+        paths:
+          - "/auth/logout"
+        strip_path: false
+
+  - name: projects-service
+    url: "${PROJECTS_URL}"
+    routes:
+      - name: projects-route
+        paths:
+          - "/projects"
+        strip_path: false

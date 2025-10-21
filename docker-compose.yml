@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  kong:
+    image: kong:3.6
+    container_name: kong
+    environment:
+      KONG_DATABASE: "off"  # 🔹 Desactiva el uso de base de datos
+      KONG_DECLARATIVE_CONFIG: /usr/local/kong/declarative/kong.yml
+      KONG_PROXY_ACCESS_LOG: /dev/stdout
+      KONG_ADMIN_ACCESS_LOG: /dev/stdout
+      KONG_PROXY_ERROR_LOG: /dev/stderr
+      KONG_ADMIN_ERROR_LOG: /dev/stderr
+      KONG_LOG_LEVEL: debug
+
+      # 👇 Variables de entorno de tus microservicios
+      ORGANIZATIONS_URL: ${ORGANIZATIONS_URL}
+      DRIM_USERS_URL: ${DRIM_USERS_URL}
+      PROJECTS_URL: ${PROJECTS_URL}
+      PLANIFIKA_USERS_URL: ${PLANIFIKA_USERS_URL}
+
+    volumes:
+      - ./kong.yml:/usr/local/kong/declarative/kong.yml
+
+    ports:
+      - "8000:8000"  # Proxy
+      - "8001:8001"  # Admin API
