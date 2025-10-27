@@ -5,7 +5,7 @@ services:
     image: kong:3.6
     container_name: kong
     environment:
-      KONG_DATABASE: "off"  # 🔹 Desactiva el uso de base de datos
+      KONG_DATABASE: "off"
       KONG_DECLARATIVE_CONFIG: /usr/local/kong/declarative/kong.yml
       KONG_PROXY_ACCESS_LOG: /dev/stdout
       KONG_ADMIN_ACCESS_LOG: /dev/stdout
@@ -13,9 +13,7 @@ services:
       KONG_ADMIN_ERROR_LOG: /dev/stderr
       KONG_LOG_LEVEL: debug
 
-      # 👇 Variables de entorno de tus microservicios
       ORGANIZATIONS_URL: ${ORGANIZATIONS_URL}
-      DRIM_USERS_URL: ${DRIM_USERS_URL}
       PROJECTS_URL: ${PROJECTS_URL}
       PLANIFIKA_USERS_URL: ${PLANIFIKA_USERS_URL}
 

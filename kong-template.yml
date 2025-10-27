@@ -10,10 +10,10 @@ services:
           - "/organizations"
         strip_path: false
 
-  - name: drim-users-service
-    url: "${DRIM_USERS_URL}"
+  - name: planifika-users-service
+    url: "${PLANIFIKA_USERS_URL}"
     routes:
-      - name: drim-login-route
+      - name: login-route
         paths:
           - "/auth/login"
         strip_path: false
