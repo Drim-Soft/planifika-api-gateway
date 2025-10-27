@@ -2,30 +2,179 @@ _format_version: "3.0"
 _transform: true
 
 services:
+  # ============================================
+  # ORGANIZATIONS SERVICE
+  # ============================================
   - name: organizations-service
     url: "${ORGANIZATIONS_URL}"
     routes:
-      - name: organizations-route
+      - name: get-organizations-route
         paths:
           - "/organizations"
         strip_path: false
 
+      - name: get-organization-by-id-route
+        paths:
+          - "~/organizations/\\d+"
+        strip_path: false
+
+      - name: create-organization-route
+        paths:
+          - "/organizations"
+        strip_path: false
+
+      - name: update-organization-route
+        paths:
+          - "~/organizations/\\d+"
+        strip_path: false
+
+      - name: delete-organization-route
+        paths:
+          - "~/organizations/\\d+"
+        strip_path: false
+
+      - name: get-users-by-organization-route
+        paths:
+          - "~/organizations/\\d+/users"
+        strip_path: false
+
+  # ============================================
+  # USERS SERVICE
+  # ============================================
   - name: planifika-users-service
     url: "${PLANIFIKA_USERS_URL}"
     routes:
-      - name: login-route
+      # Auth
+      - name: auth-login-route
         paths:
           - "/auth/login"
         strip_path: false
-      - name: drim-logout-route
+
+      - name: auth-signup-route
         paths:
-          - "/auth/logout"
+          - "/auth/signup"
         strip_path: false
 
+      - name: auth-external-login-route
+        paths:
+          - "/auth/external-login"
+        strip_path: false
+
+      # CRUD
+      - name: get-users-route
+        paths:
+          - "/users"
+        strip_path: false
+
+      - name: get-user-by-id-route
+        paths:
+          - "~/users/\\d+"
+        strip_path: false
+
+      - name: create-user-route
+        paths:
+          - "/users"
+        strip_path: false
+
+      - name: update-user-route
+        paths:
+          - "~/users/\\d+"
+        strip_path: false
+
+      - name: patch-user-route
+        paths:
+          - "~/users/\\d+"
+        strip_path: false
+
+      - name: delete-user-route
+        paths:
+          - "~/users/\\d+"
+        strip_path: false
+
+      # User status
+      - name: patch-user-status-route
+        paths:
+          - "~/users/\\d+/status/[^/]+"
+        strip_path: false
+
+      # Tareas de un usuario
+      - name: get-user-tasks-route
+        paths:
+          - "~/users/\\d+/tasks"
+        strip_path: false
+
+      # Organizaciones de un usuario
+      - name: get-user-organizations-route
+        paths:
+          - "~/users/\\d+/organizations"
+        strip_path: false
+
+      - name: patch-user-organization-route
+        paths:
+          - "~/users/\\d+/organizations/\\d+"
+        strip_path: false
+
+      # Proyectos de un usuario
+      - name: get-user-projects-route
+        paths:
+          - "~/users/\\d+/projects"
+        strip_path: false
+
+      - name: patch-user-project-route
+        paths:
+          - "~/users/\\d+/projects/\\d+"
+        strip_path: false
+
+      # Roles
+      - name: get-roles-route
+        paths:
+          - "/roles"
+        strip_path: false
+
+      - name: get-role-by-id-route
+        paths:
+          - "~/roles/\\d+"
+        strip_path: false
+
+  # ============================================
+  # PROJECTS SERVICE
+  # ============================================
   - name: projects-service
     url: "${PROJECTS_URL}"
     routes:
-      - name: projects-route
+      # CRUD
+      - name: get-projects-route
         paths:
           - "/projects"
+        strip_path: false
+
+      - name: get-project-by-id-route
+        paths:
+          - "~/projects/\\d+"
+        strip_path: false
+
+      - name: create-project-route
+        paths:
+          - "/projects"
+        strip_path: false
+
+      - name: update-project-route
+        paths:
+          - "~/projects/\\d+"
+        strip_path: false
+
+      - name: delete-project-route
+        paths:
+          - "~/projects/\\d+"
+        strip_path: false
+
+      # Methodologies
+      - name: get-methodologies-route
+        paths:
+          - "/methodologies"
+        strip_path: false
+
+      - name: get-methodology-roles-route
+        paths:
+          - "~/methodologies/\\d+/roles"
         strip_path: false
