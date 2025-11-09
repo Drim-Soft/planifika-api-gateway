@@ -68,7 +68,8 @@ services:
 
       - name: get-user-by-id-route
         paths:
-          - "~/users/\\d+"
+          - "~
+          
         strip_path: false
 
       - name: create-user-route
